@@ -60,6 +60,9 @@ export default function AppRoutes() {
       <Route path="/store/AddItem" element={<AddStoreItem />} />
       <Route path="/store/orders" element={<StoreOrders />} />
 
+      {/* Complaints */}
+      <Route path="/complaints" element={<Complaints />} />
+    
       {/* Admin */}
       <Route path="/admin/dashboard" element={<AdminDashboard />} />
       <Route path="/admin/users" element={<UsersManagement />} />
