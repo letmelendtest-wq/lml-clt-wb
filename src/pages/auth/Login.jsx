@@ -1,4 +1,11 @@
 import { useState, useContext } from "react";
+import {
+  Box,
+  Typography,
+  Checkbox,
+  FormControlLabel,
+  Link,
+} from "@mui/material";
 import Input from "../../components/common/Input";
 import Button from "../../components/common/Button";
 import { apiPost } from "../../api/apiClient";
@@ -7,10 +14,38 @@ import { AuthContext } from "../../context/AuthContext";
 import UserLayout from "../../layouts/UserLayout";
 
 export default function Login() {
-  const [form, setForm] = useState({ email: "", password: "" });
+  const [form, setForm] = useState({
+    email: "",
+    password: "",
+    rememberMe: false,
+  });
+
+  const [errors, setErrors] = useState({});
   const { login } = useContext(AuthContext);
 
+  // 🔹 Validation logic
+  const validate = () => {
+    const newErrors = {};
+
+    if (!form.email) {
+      newErrors.email = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(form.email)) {
+      newErrors.email = "Enter a valid email address";
+    }
+
+    if (!form.password) {
+      newErrors.password = "Password is required";
+    } else if (form.password.length < 8) {
+      newErrors.password = "Password must be at least 8 characters";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleSubmit = async () => {
+    if (!validate()) return;
+
     try {
       const res = await apiPost(ENDPOINTS.AUTH.LOGIN, form);
       login(res.data);
@@ -23,22 +58,95 @@ export default function Login() {
 
   return (
     <UserLayout>
-      <h2>Login</h2>
+      <Box
+        sx={{
+          maxWidth: 500,
+          mx: "auto",
+          mt: 6,
+          boxShadow: 3,
+          borderRadius: 2,
+          p: 4,
+        }}
+      >
+        <Typography
+          variant="h4"
+          sx={{ mb: 3, fontWeight: 700, color: "darkblue" ,textAlign: "center"}}
+        >
+          Login
+        </Typography>
 
-      <Input
-        label="Email"
-        value={form.email}
-        onChange={(e) => setForm({ ...form, email: e.target.value })}
-      />
+        <Box sx={{ width: "70%", pl:10, mt: 3 }}>
+          <Input
+            label="Email"
+            placeholder="abc@gmail.com"
+            value={form.email}
+            onChange={(e) =>
+              setForm({ ...form, email: e.target.value })
+            }
+            error={!!errors.email}
+            helperText={errors.email}
+          />
 
-      <Input
-        label="Password"
-        type="password"
-        value={form.password}
-        onChange={(e) => setForm({ ...form, password: e.target.value })}
-      />
+          <br /><br />
 
-      <Button onClick={handleSubmit}>Login</Button>
+          <Input
+            label="Password"
+            placeholder="At least 8 characters"
+            type="password"
+            value={form.password}
+            onChange={(e) =>
+              setForm({ ...form, password: e.target.value })
+            }
+            error={!!errors.password}
+            helperText={errors.password}
+          />
+
+          <br />
+
+          {/* Remember Me & Forgot Password */}
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              mb: 2,
+            }}
+          >
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={form.rememberMe}
+                  onChange={(e) =>
+                    setForm({
+                      ...form,
+                      rememberMe: e.target.checked,
+                    })
+                  }
+                />
+              }
+              label="Remember me"
+            />
+
+            <Link
+              component="button"
+              underline="hover"
+              sx={{ fontSize: 14 }}
+            >
+              Forgot password?
+            </Link>
+          </Box>
+
+          <Button onClick={handleSubmit}>Login</Button>
+
+          {/* Register Option */}
+          <Typography sx={{ mt: 3, fontSize: 14, textAlign: "center" }}>
+            Don’t have an account?{" "}
+            <Link component="button" underline="hover">
+              Register
+            </Link>
+          </Typography>
+        </Box>
+      </Box>
     </UserLayout>
   );
 }

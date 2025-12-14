@@ -1,10 +1,36 @@
-import { Button as MUIButton } from "@mui/material";
+import { TextField } from "@mui/material";
 
-function Button({ children, ...props }) {
+function Input({
+  name,
+  value,
+  onChange,
+  error,
+  helperText,
+  type = "text",
+  placeholder,
+  fullWidth = true,
+  sx,
+  ...props
+}) {
   return (
-    <MUIButton variant="contained" fullWidth {...props}>
-      {children}
-    </MUIButton>
+    <TextField
+      name={name}
+      value={value}
+      onChange={onChange}
+      error={error}
+      helperText={helperText}
+      type={type}
+      placeholder={placeholder}
+      fullWidth={fullWidth}
+      variant="outlined"
+      sx={{
+        backgroundColor: "background.paper", 
+        borderRadius: 1,
+        ...sx,
+      }}
+      {...props}
+    />
   );
 }
-export default Button
+
+export default Input;

@@ -13,6 +13,9 @@ function Navbar() {
         <Button color="inherit" component={Link} to="/">
           Home
         </Button>
+        <Button color="inherit" component={Link} to="/register">
+          Register
+        </Button>
         <Button color="inherit" component={Link} to="/login">
           Login
         </Button>
