@@ -70,7 +70,7 @@ export default function Login() {
       >
         <Typography
           variant="h4"
-          sx={{ mb: 3, fontWeight: 700, color: "darkblue" ,textAlign: "center"}}
+          sx={{ mb: 3, fontWeight: 700, color: "primary.main",textAlign: "center"}}
         >
           Login
         </Typography>

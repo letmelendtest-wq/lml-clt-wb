@@ -105,7 +105,7 @@ export default function Register() {
 
         {/* RIGHT FORM PANEL */}
         <Box sx={{ width: "65%", p: 4. }}>
-          <Typography variant="h4" sx={{ mb: 5, fontWeight: 700, color:"darkblue",textAlign: "center"}}>
+          <Typography variant="h4" sx={{ mb: 5, fontWeight: 700, color: "primary.main",textAlign: "center"}}>
             Register Form
           </Typography>
 

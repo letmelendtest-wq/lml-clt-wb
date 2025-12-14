@@ -41,7 +41,11 @@ export default function AddItem() {
   return (
     <UserLayout>
       <Box sx={{ maxWidth: 900, mx: "auto" }}>
-        <Typography variant="h4" fontWeight={600} sx={{ mb: 3 }}>
+        <Typography
+          variant="h4"
+          fontWeight={600}
+          sx={{ mb: 3, color: "primary.main" }}
+        >
           Add New Item
         </Typography>
 
@@ -52,8 +56,10 @@ export default function AddItem() {
             </Typography>
 
             <Grid container spacing={3}>
+              {/* Item Title */}
               <Grid item xs={12} md={6}>
                 <Input
+                  fullWidth
                   label="Item Title"
                   placeholder="e.g. DSLR Camera"
                   value={form.title}
@@ -63,8 +69,10 @@ export default function AddItem() {
                 />
               </Grid>
 
+              {/* Category – FIXED WIDTH */}
               <Grid item xs={12} md={6}>
                 <Input
+                  fullWidth
                   select
                   label="Category"
                   value={form.category}
@@ -80,21 +88,10 @@ export default function AddItem() {
                 </Input>
               </Grid>
 
-              <Grid item xs={12}>
-                <Input
-                  label="Description"
-                  placeholder="Describe the item, usage rules, etc."
-                  multiline
-                  rows={4}
-                  value={form.description}
-                  onChange={(e) =>
-                    setForm({ ...form, description: e.target.value })
-                  }
-                />
-              </Grid>
-
+              
               <Grid item xs={12} md={4}>
                 <Input
+                  fullWidth
                   label="Condition"
                   placeholder="New / Like New / Used"
                   value={form.condition}
@@ -106,6 +103,7 @@ export default function AddItem() {
 
               <Grid item xs={12} md={4}>
                 <Input
+                  fullWidth
                   label="Daily Rental Rate (PKR)"
                   type="number"
                   value={form.dailyRate}
@@ -117,6 +115,7 @@ export default function AddItem() {
 
               <Grid item xs={12} md={4}>
                 <Input
+                  fullWidth
                   label="Security Deposit (PKR)"
                   type="number"
                   value={form.deposit}
@@ -128,6 +127,7 @@ export default function AddItem() {
 
               <Grid item xs={12} md={6}>
                 <Input
+                  fullWidth
                   label="Pickup Location"
                   placeholder="City / Area"
                   value={form.location}
@@ -136,6 +136,20 @@ export default function AddItem() {
                   }
                 />
               </Grid>
+              <Grid item xs={12}>
+                <Input
+                  fullWidth
+                  label="Description"
+                  placeholder="Describe the item, usage rules, etc."
+                  multiline
+                  rows={4}
+                  value={form.description}
+                  onChange={(e) =>
+                    setForm({ ...form, description: e.target.value })
+                  }
+                />
+              </Grid>
+
             </Grid>
 
             <Box sx={{ mt: 4, textAlign: "right" }}>

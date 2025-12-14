@@ -57,7 +57,7 @@ export default function AppRoutes() {
 
       {/* Store */}
       <Route path="/store/dashboard" element={<StoreDashboard />} />
-      <Route path="/store/add-item" element={<AddStoreItem />} />
+      <Route path="/store/AddItem" element={<AddStoreItem />} />
       <Route path="/store/orders" element={<StoreOrders />} />
 
       {/* Admin */}
