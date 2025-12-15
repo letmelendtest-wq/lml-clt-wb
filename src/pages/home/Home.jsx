@@ -11,31 +11,93 @@ import {
   Paper,
   Avatar,
   IconButton,
+  CardMedia,
 } from "@mui/material";
-import {
-  KeyboardArrowLeft,
-  KeyboardArrowRight,
-} from "@mui/icons-material";
+import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material";
 
+/* ================= HERO SLIDER ================= */
 /* ================= HERO SLIDER ================= */
 const sliderData = [
   {
     tag: "Best Deal on Lending",
     title: "SMART LENDING.",
     subtitle: "UP TO 80% SAVINGS",
-    image: "https://images.unsplash.com/photo-1521791136064-7986c2920216",
+    image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1200&q=80",
   },
   {
     tag: "Trusted Community",
     title: "KYC VERIFIED.",
     subtitle: "SAFE & SECURE",
-    image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df",
+    image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1200&q=80",
   },
   {
     tag: "Earn from Idle Items",
     title: "LEND & EARN.",
     subtitle: "FAST & RELIABLE",
-    image: "https://images.unsplash.com/photo-1605902711622-cfb43c44367f",
+    image: "https://images.unsplash.com/photo-1605902711622-cfb43c44367f?auto=format&fit=crop&w=1200&q=80",
+  },
+];
+
+/* ================= BEST DEALS ================= */
+const bestDeals = [
+  {
+    title: "Camera Equipment",
+    subtitle: "Save PKR 2,000",
+    image: "https://images.unsplash.com/photo-1519183071298-a2962be54afa?auto=format&fit=crop&w=500&q=80",
+  },
+  {
+    title: "Gaming Console",
+    subtitle: "Up to 30% off",
+    image: "https://images.unsplash.com/photo-1606813901238-39e92b824d2b?auto=format&fit=crop&w=500&q=80",
+  },
+  {
+    title: "Mountain Bike",
+    subtitle: "Save PKR 5,000",
+    image: "https://images.unsplash.com/photo-1579621970795-87facc0b1b75?auto=format&fit=crop&w=500&q=80",
+  },
+  {
+    title: "Headphones",
+    subtitle: "Discount PKR 1,200",
+    image: "https://images.unsplash.com/photo-1580894908361-24b927f2e7ed?auto=format&fit=crop&w=500&q=80",
+  },
+  {
+    title: "Smartwatch",
+    subtitle: "Up to 25% off",
+    image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=500&q=80",
+  },
+];
+
+/* ================= DAILY ESSENTIALS ================= */
+const dailyEssentials = [
+  {
+    title: "Household Item",
+    subtitle: "Up to 60% off",
+    image: "https://images.unsplash.com/photo-1606813901238-39e92b824d2b?auto=format&fit=crop&w=500&q=80",
+  },
+  {
+    title: "Kitchen Set",
+    subtitle: "Save PKR 1,500",
+    image: "https://images.unsplash.com/photo-1580584126177-8c152b354a1d?auto=format&fit=crop&w=500&q=80",
+  },
+  {
+    title: "Office Chair",
+    subtitle: "Up to 20% off",
+    image: "https://images.unsplash.com/photo-1589571894960-20bbe2828b78?auto=format&fit=crop&w=500&q=80",
+  },
+  {
+    title: "Backpack",
+    subtitle: "Save PKR 800",
+    image: "https://images.unsplash.com/photo-1592503252705-40a83977a7a5?auto=format&fit=crop&w=500&q=80",
+  },
+  {
+    title: "Sports Gear",
+    subtitle: "Up to 50% off",
+    image: "https://images.unsplash.com/photo-1605296867304-46d5465a13f1?auto=format&fit=crop&w=500&q=80",
+  },
+  {
+    title: "Lamp Set",
+    subtitle: "PKR 500 off",
+    image: "https://images.unsplash.com/photo-1598300052304-91b22a6e2e0d?auto=format&fit=crop&w=500&q=80",
   },
 ];
 
@@ -93,10 +155,7 @@ export default function Home() {
               {sliderData[activeStep].subtitle}
             </Typography>
 
-            <Button
-              variant="contained"
-              sx={{ mt: 3, borderRadius: 3 }}
-            >
+            <Button variant="contained" sx={{ mt: 3, borderRadius: 3 }}>
               Explore Items
             </Button>
           </Box>
@@ -136,23 +195,24 @@ export default function Home() {
       {/* ================= BEST DEALS ================= */}
       <Box sx={{ mt: 7 }}>
         <Box display="flex" justifyContent="space-between" mb={3}>
-          <Typography fontWeight={600}>
-            Grab the best deal on Lending
-          </Typography>
+          <Typography fontWeight={600}>Grab the best deal on Lending</Typography>
           <Typography color="primary">View All →</Typography>
         </Box>
 
         <Grid container spacing={6}>
-          {[1, 2, 3, 4, 5].map((i) => (
+          {bestDeals.map((deal, i) => (
             <Grid item xs={6} sm={4} md={2.4} key={i}>
-              <Card sx={{ borderRadius: 2 }}>
-                <Box sx={{ height: 140, bgcolor: "#f1f5f9" }} />
+              <Card sx={{ borderRadius: 2, overflow: "hidden" }}>
+                <CardMedia
+                  component="img"
+                  height="140"
+                  image={deal.image}
+                  alt={deal.title}
+                />
                 <CardContent>
-                  <Typography fontWeight={600}>
-                    Camera Equipment
-                  </Typography>
+                  <Typography fontWeight={600}>{deal.title}</Typography>
                   <Typography variant="body2" color="text.secondary">
-                    Save PKR 2,000
+                    {deal.subtitle}
                   </Typography>
                 </CardContent>
               </Card>
@@ -164,9 +224,7 @@ export default function Home() {
       {/* ================= TOP CATEGORIES ================= */}
       <Box sx={{ mt: 8 }}>
         <Box display="flex" justifyContent="space-between" mb={4}>
-          <Typography fontWeight={600}>
-            Shop From Top Categories
-          </Typography>
+          <Typography fontWeight={600}>Shop From Top Categories</Typography>
           <Typography color="primary">View All →</Typography>
         </Box>
 
@@ -198,9 +256,7 @@ export default function Home() {
       {/* ================= DAILY ESSENTIALS ================= */}
       <Box sx={{ mt: 9 }}>
         <Box display="flex" justifyContent="space-between" mb={3}>
-          <Typography fontWeight={600}>
-            Daily Essentials
-          </Typography>
+          <Typography fontWeight={600}>Daily Essentials</Typography>
           <Typography color="primary">View All →</Typography>
         </Box>
 
@@ -212,22 +268,26 @@ export default function Home() {
             pb: 1,
           }}
         >
-          {[1, 2, 3, 4, 5, 6].map((i) => (
+          {dailyEssentials.map((item, i) => (
             <Card
               key={i}
               sx={{
                 minWidth: 200,
                 borderRadius: 2,
                 flexShrink: 0,
+                overflow: "hidden",
               }}
             >
-              <Box sx={{ height: 120, bgcolor: "#f1f5f9" }} />
+              <CardMedia
+                component="img"
+                height="120"
+                image={item.image}
+                alt={item.title}
+              />
               <CardContent>
-                <Typography fontWeight={600}>
-                  Household Item
-                </Typography>
+                <Typography fontWeight={600}>{item.title}</Typography>
                 <Typography variant="body2" color="text.secondary">
-                  Up to 60% off
+                  {item.subtitle}
                 </Typography>
               </CardContent>
             </Card>
