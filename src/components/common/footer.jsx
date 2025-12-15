@@ -8,7 +8,7 @@ import ShopIcon from "@mui/icons-material/Shop";
 
 export default function Footer() {
   return (
-    <Box sx={{ backgroundColor: "#0B9BD7", color: "#fff", pt: 6, pb: 3 }}>
+    <Box sx={{ backgroundColor: "#0B9BD7", color: "#fff", pt: 6, pb: 3 ,mt:5}}>
       <Grid container spacing={30} sx={{ px: { xs: 3, md: 10 } }}>
         {/* Brand & Contact */}
         <Grid item xs={12} md={4}>
