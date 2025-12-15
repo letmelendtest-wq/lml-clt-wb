@@ -1,4 +1,6 @@
 import { useState, useContext } from "react";
+import { Link as RouterLink } from "react-router-dom";
+
 import {
   Box,
   Typography,
@@ -161,9 +163,14 @@ export default function Login() {
           {/* Register Option */}
           <Typography sx={{ mt: 3, fontSize: 14, textAlign: "center" }}>
             Don’t have an account?{" "}
-            <Link component="button" underline="hover">
+            <Link
+              component={RouterLink}
+              to="/register"
+              underline="hover"
+            >
               Register
             </Link>
+
           </Typography>
         </Box>
       </Box>

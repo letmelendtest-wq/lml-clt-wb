@@ -142,7 +142,7 @@ export default function Home() {
           <Typography color="primary">View All →</Typography>
         </Box>
 
-        <Grid container spacing={3}>
+        <Grid container spacing={6}>
           {[1, 2, 3, 4, 5].map((i) => (
             <Grid item xs={6} sm={4} md={2.4} key={i}>
               <Card sx={{ borderRadius: 2 }}>
@@ -181,7 +181,7 @@ export default function Home() {
                     bgcolor: "#f8fafc",
                     color: "#0ea5e9",
                     fontSize: 26,
-                    mx: "auto",
+                    mx: 5,
                   }}
                 >
                   {cat.icon}

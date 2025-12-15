@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { Link as RouterLink } from "react-router-dom";
+
 import {
   Box,
   Typography,
@@ -104,9 +106,15 @@ export default function Register() {
             Create an account to lend and borrow items securely on Let Me Lend.
             KYC verification is required before sensitive actions.
           </Typography>
-          <Button variant="outlined" color="inherit">
+          <Button
+            variant="outlined"
+            color="inherit"
+            component={RouterLink}
+            to="/login"
+          >
             Have an Account
           </Button>
+
         </Box>
 
         {/* RIGHT FORM PANEL */}
@@ -123,9 +131,6 @@ export default function Register() {
           )}
 
           <Box sx={{ display: "flex", gap: 2 }}>
-            <Typography variant="h7" sx={{ fontWeight: 600, }}>
-              <label htmlFor="">First Name:</label>
-            </Typography>
             <Input
               placeholder="First Name"
               name="firstName"
@@ -142,11 +147,6 @@ export default function Register() {
                 ),
               }}
             />
-            <Typography variant="h7" sx={{ fontWeight: 600, }}>
-              <label htmlFor="">Last Name:</label>
-            </Typography>
-
-
             <Input
               placeholder="Last Name"
               name="lastName"
@@ -164,9 +164,6 @@ export default function Register() {
               }}
             />
           </Box><br />
-          <Typography variant="h7" sx={{ fontWeight: 600, }}>
-            <label htmlFor="">CNIC:</label>
-          </Typography>
           <Input
             placeholder="CNIC (13 digits without dashes)"
             name="cnic"
@@ -184,10 +181,6 @@ export default function Register() {
             }}
           />
           <br /><br />
-          <Typography variant="h7" sx={{ fontWeight: 600, }}>
-            <label htmlFor="">Date Of Birth:</label>
-          </Typography>
-
           <Input
             type="date"
             name="dob"
@@ -205,10 +198,6 @@ export default function Register() {
             }}
           />
           <br /><br />
-          <Typography variant="h7" sx={{ fontWeight: 600, }}>
-            <label htmlFor="">E-Mail:</label>
-          </Typography>
-
           <Input
             placeholder="abc@gmail.com"
             name="email"
@@ -225,12 +214,8 @@ export default function Register() {
               ),
             }}
           />
-
           <br /><br />
           <Box sx={{ display: "flex", gap: 2, mt: 2 }}>
-            <Typography variant="h7" sx={{ fontWeight: 600, }}>
-              <label htmlFor="">Password:</label>
-            </Typography>
             <Input
               type="password"
               placeholder="At least 8 characters"
@@ -248,10 +233,6 @@ export default function Register() {
                 ),
               }}
             />
-            <Typography variant="h7" sx={{ fontWeight: 600, }}>
-              <label htmlFor="">Confrim Password:</label>
-            </Typography>
-
             <Input
               type="password"
               placeholder="Confirm Password"
