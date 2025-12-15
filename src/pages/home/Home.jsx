@@ -9,70 +9,57 @@ import {
   Button,
   MobileStepper,
   Paper,
+  Avatar,
+  IconButton,
 } from "@mui/material";
-import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material";
-import { useTheme } from "@mui/material/styles";
+import {
+  KeyboardArrowLeft,
+  KeyboardArrowRight,
+} from "@mui/icons-material";
 
-/**
- * Dummy background images (replace later with API or CDN images)
- * Using public URLs to keep API-ready structure
- */
+/* ================= HERO SLIDER ================= */
 const sliderData = [
   {
-    title: "Secure Peer-to-Peer Lending",
-    description:
-      "Let Me Lend connects verified users across Pakistan to lend and borrow items safely with trust and transparency.",
-    image:
-      "https://images.unsplash.com/photo-1521791136064-7986c2920216",
+    tag: "Best Deal on Lending",
+    title: "SMART LENDING.",
+    subtitle: "UP TO 80% SAVINGS",
+    image: "https://images.unsplash.com/photo-1521791136064-7986c2920216",
   },
   {
-    title: "KYC Verified Community",
-    description:
-      "Only KYC-verified users can book, lend, or borrow items, ensuring a secure and reliable experience.",
-    image:
-      "https://images.unsplash.com/photo-1551836022-d5d88e9218df",
+    tag: "Trusted Community",
+    title: "KYC VERIFIED.",
+    subtitle: "SAFE & SECURE",
+    image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df",
   },
   {
-    title: "Easy Booking & Returns",
-    description:
-      "Browse items, book instantly, chat with lenders, and return items smoothly with reviews after completion.",
-    image:
-      "https://images.unsplash.com/photo-1605902711622-cfb43c44367f",
+    tag: "Earn from Idle Items",
+    title: "LEND & EARN.",
+    subtitle: "FAST & RELIABLE",
+    image: "https://images.unsplash.com/photo-1605902711622-cfb43c44367f",
   },
 ];
 
+/* ================= CATEGORIES ================= */
 const categories = [
-  { title: "Electronics", description: "Cameras, laptops, speakers & more" },
-  { title: "Tools", description: "Drills, cutters, repair tools" },
-  { title: "Books", description: "Academic & non-academic books" },
-  { title: "Sports Equipment", description: "Bats, rackets, fitness gear" },
-  { title: "Fashion & Accessories", description: "Watches, bags, outfits" },
-  { title: "Home Appliances", description: "Kitchen & household items" },
+  { title: "Electronics", icon: "📱" },
+  { title: "Tools", icon: "🛠️" },
+  { title: "Books", icon: "📚" },
+  { title: "Furniture", icon: "🪑" },
+  { title: "Sports", icon: "🏏" },
+  { title: "Accessories", icon: "⌚" },
 ];
 
 export default function Home() {
-  const theme = useTheme();
   const [activeStep, setActiveStep] = useState(0);
-  const maxSteps = sliderData.length;
-
-  const handleNext = () => {
-    setActiveStep((prev) => Math.min(prev + 1, maxSteps - 1));
-  };
-
-  const handleBack = () => {
-    setActiveStep((prev) => Math.max(prev - 1, 0));
-  };
 
   return (
     <UserLayout>
-      {/* Header */}
-
-      {/* Slider Section with Background Image */}
+      {/* ================= HERO BANNER ================= */}
       <Paper
         elevation={0}
         sx={{
-          height: 400,
-          borderRadius: 2,
+          height: 360,
+          borderRadius: 3,
           position: "relative",
           overflow: "hidden",
           backgroundImage: `url(${sliderData[activeStep].image})`,
@@ -85,95 +72,167 @@ export default function Home() {
           sx={{
             position: "absolute",
             inset: 0,
-            backgroundColor: "rgba(0,0,0,0.55)",
+            background:
+              "linear-gradient(90deg, rgba(15,23,42,0.85) 40%, rgba(15,23,42,0.2))",
+            color: "#fff",
             display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            p: 3,
+            alignItems: "center",
+            px: 6,
           }}
         >
-          <Typography
-            variant="h5"
-            fontWeight={600}
-            sx={{ color: theme.palette.common.white }}
-          >
-            {sliderData[activeStep].title}
-          </Typography>
-          <Typography
-            sx={{
-              mt: 1,
-              maxWidth: 600,
-              color: theme.palette.grey[200],
-            }}
-          >
-            {sliderData[activeStep].description}
-          </Typography>
+          <Box sx={{ maxWidth: 420 }}>
+            <Typography variant="caption" sx={{ opacity: 0.8 }}>
+              {sliderData[activeStep].tag}
+            </Typography>
+
+            <Typography variant="h4" fontWeight={800} mt={1}>
+              {sliderData[activeStep].title}
+            </Typography>
+
+            <Typography fontWeight={600} sx={{ mt: 1 }}>
+              {sliderData[activeStep].subtitle}
+            </Typography>
+
+            <Button
+              variant="contained"
+              sx={{ mt: 3, borderRadius: 3 }}
+            >
+              Explore Items
+            </Button>
+          </Box>
         </Box>
 
-        {/* Stepper */}
+        {/* Arrows */}
+        <IconButton
+          onClick={() => setActiveStep((p) => Math.max(p - 1, 0))}
+          sx={{ position: "absolute", left: 10, top: "50%", color: "#fff" }}
+        >
+          <KeyboardArrowLeft />
+        </IconButton>
+
+        <IconButton
+          onClick={() =>
+            setActiveStep((p) => Math.min(p + 1, sliderData.length - 1))
+          }
+          sx={{ position: "absolute", right: 10, top: "50%", color: "#fff" }}
+        >
+          <KeyboardArrowRight />
+        </IconButton>
+
         <MobileStepper
           variant="dots"
-          steps={maxSteps}
+          steps={sliderData.length}
           position="static"
           activeStep={activeStep}
           sx={{
             position: "absolute",
-            bottom: 0,
+            bottom: 10,
             width: "100%",
-            backgroundColor: "transparent",
+            background: "transparent",
           }}
-          nextButton={
-            <Button
-              size="small"
-              onClick={handleNext}
-              disabled={activeStep === maxSteps - 1}
-              sx={{ color: theme.palette.common.white }}
-            >
-              Next
-              <KeyboardArrowRight />
-            </Button>
-          }
-          backButton={
-            <Button
-              size="small"
-              onClick={handleBack}
-              disabled={activeStep === 0}
-              sx={{ color: theme.palette.common.white }}
-            >
-              <KeyboardArrowLeft />
-              Back
-            </Button>
-          }
         />
       </Paper>
 
-      {/* Categories Section */}
-      <Box sx={{ mt: 6 }}>
-        <Typography variant="h5" fontWeight={600} sx={{ mb: 3 }}>
-          Browse Categories
-        </Typography>
+      {/* ================= BEST DEALS ================= */}
+      <Box sx={{ mt: 7 }}>
+        <Box display="flex" justifyContent="space-between" mb={3}>
+          <Typography fontWeight={600}>
+            Grab the best deal on Lending
+          </Typography>
+          <Typography color="primary">View All →</Typography>
+        </Box>
 
-        <Grid container spacing={3}>
-          {categories.map((category, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
-              <Card
-                sx={{
-                  height: "100%",
-                  borderRadius: 2,
-                }}
-              >
+        <Grid container spacing={6}>
+          {[1, 2, 3, 4, 5].map((i) => (
+            <Grid item xs={6} sm={4} md={2.4} key={i}>
+              <Card sx={{ borderRadius: 2 }}>
+                <Box sx={{ height: 140, bgcolor: "#f1f5f9" }} />
                 <CardContent>
-                  <Typography variant="h6" fontWeight={600}>
-                    {category.title}
+                  <Typography fontWeight={600}>
+                    Camera Equipment
                   </Typography>
-                  <Typography sx={{ mt: 1 }}>
-                    {category.description}
+                  <Typography variant="body2" color="text.secondary">
+                    Save PKR 2,000
                   </Typography>
                 </CardContent>
               </Card>
             </Grid>
           ))}
         </Grid>
+      </Box>
+
+      {/* ================= TOP CATEGORIES ================= */}
+      <Box sx={{ mt: 8 }}>
+        <Box display="flex" justifyContent="space-between" mb={4}>
+          <Typography fontWeight={600}>
+            Shop From Top Categories
+          </Typography>
+          <Typography color="primary">View All →</Typography>
+        </Box>
+
+        <Grid container spacing={4}>
+          {categories.map((cat, i) => (
+            <Grid item xs={4} sm={2} key={i}>
+              <Box textAlign="center">
+                <Avatar
+                  sx={{
+                    width: 72,
+                    height: 72,
+                    bgcolor: "#f8fafc",
+                    color: "#0ea5e9",
+                    fontSize: 26,
+                    mx: 5,
+                  }}
+                >
+                  {cat.icon}
+                </Avatar>
+                <Typography sx={{ mt: 1.5 }} fontWeight={500}>
+                  {cat.title}
+                </Typography>
+              </Box>
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
+
+      {/* ================= DAILY ESSENTIALS ================= */}
+      <Box sx={{ mt: 9 }}>
+        <Box display="flex" justifyContent="space-between" mb={3}>
+          <Typography fontWeight={600}>
+            Daily Essentials
+          </Typography>
+          <Typography color="primary">View All →</Typography>
+        </Box>
+
+        <Box
+          sx={{
+            display: "flex",
+            gap: 3,
+            overflowX: "auto",
+            pb: 1,
+          }}
+        >
+          {[1, 2, 3, 4, 5, 6].map((i) => (
+            <Card
+              key={i}
+              sx={{
+                minWidth: 200,
+                borderRadius: 2,
+                flexShrink: 0,
+              }}
+            >
+              <Box sx={{ height: 120, bgcolor: "#f1f5f9" }} />
+              <CardContent>
+                <Typography fontWeight={600}>
+                  Household Item
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Up to 60% off
+                </Typography>
+              </CardContent>
+            </Card>
+          ))}
+        </Box>
       </Box>
     </UserLayout>
   );

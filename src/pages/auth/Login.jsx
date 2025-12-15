@@ -1,4 +1,6 @@
 import { useState, useContext } from "react";
+import { Link as RouterLink } from "react-router-dom";
+
 import {
   Box,
   Typography,
@@ -12,6 +14,10 @@ import { apiPost } from "../../api/apiClient";
 import { ENDPOINTS } from "../../api/endpoints";
 import { AuthContext } from "../../context/AuthContext";
 import UserLayout from "../../layouts/UserLayout";
+import InputAdornment from "@mui/material/InputAdornment";
+import EmailIcon from "@mui/icons-material/Email";
+import LockIcon from "@mui/icons-material/Lock";
+
 
 export default function Login() {
   const [form, setForm] = useState({
@@ -70,12 +76,12 @@ export default function Login() {
       >
         <Typography
           variant="h4"
-          sx={{ mb: 3, fontWeight: 700, color: "primary.main",textAlign: "center"}}
+          sx={{ mb: 3, fontWeight: 700, color: "primary.main", textAlign: "center" }}
         >
           Login
         </Typography>
 
-        <Box sx={{ width: "70%", pl:10, mt: 3 }}>
+        <Box sx={{ width: "70%", pl: 10, mt: 3 }}>
           <Input
             label="Email"
             placeholder="abc@gmail.com"
@@ -85,7 +91,15 @@ export default function Login() {
             }
             error={!!errors.email}
             helperText={errors.email}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <EmailIcon color="primary" />
+                </InputAdornment>
+              ),
+            }}
           />
+
 
           <br /><br />
 
@@ -99,7 +113,15 @@ export default function Login() {
             }
             error={!!errors.password}
             helperText={errors.password}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <LockIcon color="primary" />
+                </InputAdornment>
+              ),
+            }}
           />
+
 
           <br />
 
@@ -141,9 +163,14 @@ export default function Login() {
           {/* Register Option */}
           <Typography sx={{ mt: 3, fontSize: 14, textAlign: "center" }}>
             Don’t have an account?{" "}
-            <Link component="button" underline="hover">
+            <Link
+              component={RouterLink}
+              to="/register"
+              underline="hover"
+            >
               Register
             </Link>
+
           </Typography>
         </Box>
       </Box>

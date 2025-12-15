@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { Link as RouterLink } from "react-router-dom";
+
 import {
   Box,
   Typography,
@@ -11,7 +13,13 @@ import Button from "../../components/common/Button";
 import UserLayout from "../../layouts/UserLayout";
 import { apiPost } from "../../api/apiClient";
 import { ENDPOINTS } from "../../api/endpoints";
-import { Bloodtype } from "@mui/icons-material";
+import InputAdornment from "@mui/material/InputAdornment";
+import PersonIcon from "@mui/icons-material/Person";
+import BadgeIcon from "@mui/icons-material/Badge";
+import EmailIcon from "@mui/icons-material/Email";
+import LockIcon from "@mui/icons-material/Lock";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+
 
 export default function Register() {
   const [form, setForm] = useState({
@@ -98,14 +106,20 @@ export default function Register() {
             Create an account to lend and borrow items securely on Let Me Lend.
             KYC verification is required before sensitive actions.
           </Typography>
-          <Button variant="outlined" color="inherit">
+          <Button
+            variant="outlined"
+            color="inherit"
+            component={RouterLink}
+            to="/login"
+          >
             Have an Account
           </Button>
+
         </Box>
 
         {/* RIGHT FORM PANEL */}
         <Box sx={{ width: "65%", p: 4. }}>
-          <Typography variant="h4" sx={{ mb: 5, fontWeight: 700, color: "primary.main",textAlign: "center"}}>
+          <Typography variant="h4" sx={{ mb: 5, fontWeight: 700, color: "primary.main", textAlign: "center" }}>
             Register Form
           </Typography>
 
@@ -117,9 +131,6 @@ export default function Register() {
           )}
 
           <Box sx={{ display: "flex", gap: 2 }}>
-            <Typography variant="h7" sx={{ fontWeight: 600, }}>
-              <label htmlFor="">First Name:</label>
-            </Typography>
             <Input
               placeholder="First Name"
               name="firstName"
@@ -128,11 +139,14 @@ export default function Register() {
               error={!!errors.firstName}
               helperText={errors.firstName}
               fullWidth
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <PersonIcon color="primary" />
+                  </InputAdornment>
+                ),
+              }}
             />
-            <Typography variant="h7" sx={{ fontWeight: 600, }}>
-              <label htmlFor="">Last Name:</label>
-            </Typography>
-
             <Input
               placeholder="Last Name"
               name="lastName"
@@ -141,11 +155,15 @@ export default function Register() {
               error={!!errors.lastName}
               helperText={errors.lastName}
               fullWidth
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <PersonIcon color="primary" />
+                  </InputAdornment>
+                ),
+              }}
             />
           </Box><br />
-          <Typography variant="h7" sx={{ fontWeight: 600, }}>
-            <label htmlFor="">CNIC:</label>
-          </Typography>
           <Input
             placeholder="CNIC (13 digits without dashes)"
             name="cnic"
@@ -153,13 +171,16 @@ export default function Register() {
             onChange={handleChange}
             error={!!errors.cnic}
             helperText={errors.cnic}
-            sx={{ mt: 2 }}
             fullWidth
-          /><br /><br />
-          <Typography variant="h7" sx={{ fontWeight: 600, }}>
-            <label htmlFor="">Date Of Birth:</label>
-          </Typography>
-
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <BadgeIcon color="primary" />
+                </InputAdornment>
+              ),
+            }}
+          />
+          <br /><br />
           <Input
             type="date"
             name="dob"
@@ -167,14 +188,16 @@ export default function Register() {
             onChange={handleChange}
             error={!!errors.dob}
             helperText={errors.dob}
-            InputLabelProps={{ shrink: true }}
-            sx={{ mt: 2 }}
             fullWidth
-          /><br /><br />
-          <Typography variant="h7" sx={{ fontWeight: 600, }}>
-            <label htmlFor="">E-Mail:</label>
-          </Typography>
-
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <CalendarMonthIcon color="primary" />
+                </InputAdornment>
+              ),
+            }}
+          />
+          <br /><br />
           <Input
             placeholder="abc@gmail.com"
             name="email"
@@ -182,28 +205,34 @@ export default function Register() {
             onChange={handleChange}
             error={!!errors.email}
             helperText={errors.email}
-            sx={{ mt: 2 }}
             fullWidth
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <EmailIcon color="primary" />
+                </InputAdornment>
+              ),
+            }}
           />
           <br /><br />
           <Box sx={{ display: "flex", gap: 2, mt: 2 }}>
-            <Typography variant="h7" sx={{ fontWeight: 600, }}>
-              <label htmlFor="">Password:</label>
-            </Typography>
             <Input
               type="password"
-              placeholder="Atleast 8 digits"
+              placeholder="At least 8 characters"
               name="password"
               value={form.password}
               onChange={handleChange}
               error={!!errors.password}
               helperText={errors.password}
               fullWidth
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <LockIcon color="primary" />
+                  </InputAdornment>
+                ),
+              }}
             />
-            <Typography variant="h7" sx={{ fontWeight: 600, }}>
-              <label htmlFor="">Confrim Password:</label>
-            </Typography>
-
             <Input
               type="password"
               placeholder="Confirm Password"
@@ -213,6 +242,13 @@ export default function Register() {
               error={!!errors.confirmPassword}
               helperText={errors.confirmPassword}
               fullWidth
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <LockIcon color="primary" />
+                  </InputAdornment>
+                ),
+              }}
             />
           </Box>
 
