@@ -62,6 +62,7 @@ export default function AppRoutes() {
 
       {/* Complaints */}
       <Route path="/complaints" element={<Complaints />} />
+      <Route path="/complaints/add" element={<Complaints />} />
     
       {/* Admin */}
       <Route path="/admin/dashboard" element={<AdminDashboard />} />
