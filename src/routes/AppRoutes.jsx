@@ -32,6 +32,7 @@ import ListingsReview from "../pages/admin/ListingsReview";
 
 // Complaints
 import Complaints from "../pages/complaints/Complaints";
+import AddComplaint from "../pages/complaints/AddComplaint";
 
 // Error
 import NotFound from "../pages/error/NotFound";
@@ -62,6 +63,7 @@ export default function AppRoutes() {
 
       {/* Complaints */}
       <Route path="/complaints" element={<Complaints />} />
+      <Route path="/complaints/add" element={<AddComplaint />} />
     
       {/* Admin */}
       <Route path="/admin/dashboard" element={<AdminDashboard />} />
