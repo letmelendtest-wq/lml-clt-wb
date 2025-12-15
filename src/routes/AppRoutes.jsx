@@ -48,7 +48,7 @@ export default function AppRoutes() {
 
       {/* Items */}
       <Route path="/items" element={<ItemList />} />
-      <Route path="/items/:id" element={<ItemDetails />} />
+      <Route path="/items" element={<ItemDetails />} />
       <Route path="/items/add" element={<AddItem />} />
 
       {/* Booking */}
