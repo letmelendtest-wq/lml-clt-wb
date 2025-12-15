@@ -76,7 +76,7 @@ export default function AddItem() {
     <UserLayout>
       {/* Header */}
       <Box sx={{ mb: 4, display: "flex", justifyContent: "space-between" }}>
-        <Typography variant="h4" fontWeight={700}>
+        <Typography variant="h4" fontWeight={700} color={"primary.main"}>
           Add New Product
         </Typography>
         <Box sx={{ display: "flex", gap: 2 }}>
