@@ -1,4 +1,5 @@
 import { useState } from "react";
+import UserLayout from "../../layouts/UserLayout";
 import AdminLayout from "../../layouts/AdminLayout";
 import {
   Box,
@@ -72,8 +73,9 @@ export default function AddComplaint() {
 
   return (
     <AdminLayout>
+      <UserLayout>
       <Box sx={{ p: 3 }}>
-        <Typography variant="h4" gutterBottom>
+        <Typography variant="h4" color="primary.main" gutterBottom>
           File a Complaint
         </Typography>
 
@@ -191,6 +193,7 @@ export default function AddComplaint() {
           </Box>
         </Paper>
       </Box>
+      </UserLayout>
     </AdminLayout>
   );
 }

@@ -92,7 +92,7 @@ export default function AdminDashboard() {
       <UserLayout>
         <Box sx={{ p: 3 }}>
           {/* HEADER */}
-          <Typography variant="h4" fontWeight={700} mb={3}>
+          <Typography variant="h4" color="primary.main" fontWeight={700} mb={3}>
             Admin Dashboard
           </Typography>
 
