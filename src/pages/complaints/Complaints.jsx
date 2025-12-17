@@ -1,5 +1,4 @@
 import React, { useState, useMemo } from "react";
-import UserLayout from "../../layouts/UserLayout";
 import AdminLayout from "../../layouts/AdminLayout";
 import {
   Box,
@@ -59,11 +58,9 @@ export default function Complaints() {
   };
 
   return (
-    
     <AdminLayout>
-      <UserLayout>
-      <Box sx={{ p: 3 }}>
-        <Typography variant="h4" color="primary.main" gutterBottom > 
+      <Box>
+        <Typography variant="h4" color="primary.main" gutterBottom>
           Complaints Management
         </Typography>
 
@@ -157,8 +154,6 @@ export default function Complaints() {
           />
         </Box>
       </Box>
-      </UserLayout>
     </AdminLayout>
-    
   );
 }

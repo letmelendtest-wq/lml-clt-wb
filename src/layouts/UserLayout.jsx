@@ -1,23 +1,32 @@
+import { Box } from "@mui/material";
 import Navbar from "../components/layout/Navbar";
 import TopHeader from "../components/common/header";
 import Footer from "../components/common/footer";
-import { Container, Box } from "@mui/material";
 
 export default function UserLayout({ children }) {
   return (
-
-    <>
-      <>
-        <TopHeader />
-        {/* Main Navbar below */}
-      </>
-
+    <Box sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+      {/* Top Header */}
+      <TopHeader />
+      
+      {/* Main Navbar */}
       <Navbar />
-      <Box sx={{ display: "flex" }}>
-        <Container sx={{ mt: 4 }}>{children}</Container>
+      
+      {/* Main Content */}
+      <Box
+        component="main"
+        sx={{
+          flexGrow: 1,
+          bgcolor: "background.default",
+          px: { xs: 2, md: 4 },
+          py: { xs: 2, md: 3 },
+        }}
+      >
+        {children}
       </Box>
+      
+      {/* Footer */}
       <Footer />
-    </>
-
+    </Box>
   );
 }

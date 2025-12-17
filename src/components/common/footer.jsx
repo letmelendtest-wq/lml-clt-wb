@@ -51,9 +51,9 @@ export default function Footer() {
         color: theme.palette.mode === "dark" ? "text.primary" : "#fff",
         pt: 6,
         pb: 3,
-        mt: "auto",
         borderTop: 1,
         borderColor: theme.palette.mode === "dark" ? "divider" : "transparent",
+        width: "100%",
       }}
     >
       <Container maxWidth="lg">

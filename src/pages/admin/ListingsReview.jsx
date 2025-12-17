@@ -1,5 +1,4 @@
 import { useState } from "react";
-import UserLayout from "../../layouts/UserLayout";
 import AdminLayout from "../../layouts/AdminLayout";
 import {
   Box,
@@ -49,117 +48,117 @@ export default function ListingsReview() {
 
   return (
     <AdminLayout>
-      <UserLayout>
-      {/* ================= HEADER ================= */}
-      <Box mb={3}>
-        <Typography variant="h5" fontWeight={700}>
-          Listings Review
-        </Typography>
-        <Typography color="text.secondary">
-          Review and approve items listed by users and stores
-        </Typography>
-      </Box>
+      <Box>
+        {/* ================= HEADER ================= */}
+        <Box mb={3}>
+          <Typography variant="h5" fontWeight={700}>
+            Listings Review
+          </Typography>
+          <Typography color="text.secondary">
+            Review and approve items listed by users and stores
+          </Typography>
+        </Box>
 
-      {/* ================= LISTINGS GRID ================= */}
-      <Grid container spacing={3}>
-        {listings.map((item) => (
-          <Grid item xs={12} sm={6} md={4} key={item.id}>
-            <Card sx={{ borderRadius: 3, overflow: "hidden" }}>
-              <CardMedia
-                component="img"
-                height="180"
-                image={item.image}
-                alt={item.title}
-              />
-
-              <CardContent>
-                <Typography fontWeight={600}>{item.title}</Typography>
-
-                <Stack direction="row" spacing={1} mt={1}>
-                  <Chip label={item.category} size="small" />
-                  <Chip
-                    label={item.owner}
-                    size="small"
-                    color={item.owner === "Store" ? "secondary" : "primary"}
-                  />
-                </Stack>
-
-                <Typography mt={1} fontWeight={500}>
-                  {item.price}
-                </Typography>
-
-                <Chip
-                  label={item.status}
-                  color="warning"
-                  size="small"
-                  sx={{ mt: 1 }}
+        {/* ================= LISTINGS GRID ================= */}
+        <Grid container spacing={3}>
+          {listings.map((item) => (
+            <Grid item xs={12} sm={6} md={4} key={item.id}>
+              <Card sx={{ borderRadius: 3, overflow: "hidden" }}>
+                <CardMedia
+                  component="img"
+                  height="180"
+                  image={item.image}
+                  alt={item.title}
                 />
 
-                <Stack direction="row" spacing={1} mt={2}>
-                  <Button
-                    size="small"
-                    variant="outlined"
-                    startIcon={<VisibilityIcon />}
-                    onClick={() => setSelectedItem(item)}
-                  >
-                    View
-                  </Button>
+                <CardContent>
+                  <Typography fontWeight={600}>{item.title}</Typography>
 
-                  <Button
-                    size="small"
-                    variant="contained"
-                    color="success"
-                    startIcon={<CheckCircleIcon />}
-                  >
-                    Approve
-                  </Button>
+                  <Stack direction="row" spacing={1} mt={1}>
+                    <Chip label={item.category} size="small" />
+                    <Chip
+                      label={item.owner}
+                      size="small"
+                      color={item.owner === "Store" ? "secondary" : "primary"}
+                    />
+                  </Stack>
 
-                  <Button
-                    size="small"
-                    variant="contained"
-                    color="error"
-                    startIcon={<CancelIcon />}
-                  >
-                    Reject
-                  </Button>
-                </Stack>
-              </CardContent>
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
+                  <Typography mt={1} fontWeight={500}>
+                    {item.price}
+                  </Typography>
 
-      {/* ================= VIEW DETAILS MODAL ================= */}
-      <Dialog
-        open={Boolean(selectedItem)}
-        onClose={() => setSelectedItem(null)}
-        maxWidth="sm"
-        fullWidth
-      >
-        {selectedItem && (
-          <>
-            <DialogTitle>Listing Details</DialogTitle>
-            <DialogContent dividers>
-              <Typography fontWeight={600}>
-                {selectedItem.title}
-              </Typography>
-              <Typography mt={1}>
-                Category: {selectedItem.category}
-              </Typography>
-              <Typography>
-                Owner Type: {selectedItem.owner}
-              </Typography>
-              <Typography>
-                Price: {selectedItem.price}
-              </Typography>
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={() => setSelectedItem(null)}>Close</Button>
-            </DialogActions>
-          </>
-        )}
-      </Dialog>
-      </UserLayout>
+                  <Chip
+                    label={item.status}
+                    color="warning"
+                    size="small"
+                    sx={{ mt: 1 }}
+                  />
+
+                  <Stack direction="row" spacing={1} mt={2}>
+                    <Button
+                      size="small"
+                      variant="outlined"
+                      startIcon={<VisibilityIcon />}
+                      onClick={() => setSelectedItem(item)}
+                    >
+                      View
+                    </Button>
+
+                    <Button
+                      size="small"
+                      variant="contained"
+                      color="success"
+                      startIcon={<CheckCircleIcon />}
+                    >
+                      Approve
+                    </Button>
+
+                    <Button
+                      size="small"
+                      variant="contained"
+                      color="error"
+                      startIcon={<CancelIcon />}
+                    >
+                      Reject
+                    </Button>
+                  </Stack>
+                </CardContent>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+
+        {/* ================= VIEW DETAILS MODAL ================= */}
+        <Dialog
+          open={Boolean(selectedItem)}
+          onClose={() => setSelectedItem(null)}
+          maxWidth="sm"
+          fullWidth
+        >
+          {selectedItem && (
+            <>
+              <DialogTitle>Listing Details</DialogTitle>
+              <DialogContent dividers>
+                <Typography fontWeight={600}>
+                  {selectedItem.title}
+                </Typography>
+                <Typography mt={1}>
+                  Category: {selectedItem.category}
+                </Typography>
+                <Typography>
+                  Owner Type: {selectedItem.owner}
+                </Typography>
+                <Typography>
+                  Price: {selectedItem.price}
+                </Typography>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={() => setSelectedItem(null)}>Close</Button>
+              </DialogActions>
+            </>
+          )}
+        </Dialog>
+      </Box>
     </AdminLayout>
   );
 }

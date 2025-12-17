@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import React from "react";
 import {
   Box,
   List,
@@ -12,21 +12,22 @@ import {
   Drawer,
   IconButton,
 } from "@mui/material";
+import { NavLink } from "react-router-dom";
 import CloseIcon from "@mui/icons-material/Close";
 import DashboardIcon from "@mui/icons-material/Dashboard";
-import PeopleIcon from "@mui/icons-material/People";
-import ReportProblemIcon from "@mui/icons-material/ReportProblem";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import InventoryIcon from "@mui/icons-material/Inventory";
-import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
+import StorefrontIcon from "@mui/icons-material/Storefront";
 
-const menu = [
-  { text: "Dashboard", icon: <DashboardIcon />, path: "/admin/dashboard" },
-  { text: "Users", icon: <PeopleIcon />, path: "/admin/users" },
-  { text: "Products", icon: <InventoryIcon />, path: "/admin/listings" },
-  { text: "Complaints", icon: <ReportProblemIcon />, path: "/admin/complaints" },
+const menuItems = [
+  { text: "Dashboard", icon: <DashboardIcon />, path: "/store/dashboard" },
+  { text: "Add Item", icon: <AddCircleOutlineIcon />, path: "/store/AddItem" },
+  { text: "Orders", icon: <ShoppingCartIcon />, path: "/store/orders" },
+  { text: "Inventory", icon: <InventoryIcon />, path: "/items" },
 ];
 
-export default function AdminSidebar({ open, onClose, onToggle }) {
+function StoreSidebar({ open, onClose, onToggle }) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
@@ -54,18 +55,14 @@ export default function AdminSidebar({ open, onClose, onToggle }) {
         }}
       >
         <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
-          <AdminPanelSettingsIcon
+          <StorefrontIcon
             sx={{
               fontSize: 32,
               color: "white",
             }}
           />
-          <Typography
-            variant="h6"
-            fontWeight={700}
-            sx={{ color: "white" }}
-          >
-            Admin Panel
+          <Typography variant="h6" fontWeight={700} sx={{ color: "white" }}>
+            Store Panel
           </Typography>
         </Box>
         
@@ -88,7 +85,7 @@ export default function AdminSidebar({ open, onClose, onToggle }) {
       {/* Navigation Menu */}
       <Box sx={{ flexGrow: 1, overflow: "auto" }}>
         <List sx={{ py: 2 }}>
-          {menu.map((item) => (
+          {menuItems.map((item) => (
             <ListItemButton
               key={item.text}
               component={NavLink}
@@ -155,7 +152,7 @@ export default function AdminSidebar({ open, onClose, onToggle }) {
             textAlign: "center",
           }}
         >
-          Admin Dashboard v1.0
+          Store Dashboard v1.0
         </Typography>
       </Box>
     </Box>
@@ -194,3 +191,5 @@ export default function AdminSidebar({ open, onClose, onToggle }) {
     </Box>
   );
 }
+
+export default StoreSidebar;
