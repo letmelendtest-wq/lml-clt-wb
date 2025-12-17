@@ -322,10 +322,3 @@ export default function AddStoreItem() {
     </StoreLayout>
   );
 }
-
-      <Input label="Item Name" />
-      <Input label="Price" />
-      <Button>Add Item</Button>
-    </StoreLayout>
-  );
-}

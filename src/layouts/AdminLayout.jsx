@@ -3,7 +3,7 @@ import { Box, IconButton, useTheme, useMediaQuery, Fab } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
-import AdminSidebar from "../components/layout/AdminSidebar";
+import AdminSidebar from "../components/layout/Adminsidebar";
 import { useContext } from "react";
 import { ThemeContext } from "../context/ThemeContext";
 
