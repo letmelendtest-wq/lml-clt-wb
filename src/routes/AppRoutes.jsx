@@ -24,6 +24,7 @@ import UserBookings from "../pages/booking/UserBookings";
 import StoreDashboard from "../pages/store/StoreDashboard";
 import AddStoreItem from "../pages/store/AddStoreItem";
 import StoreOrders from "../pages/store/StoreOrders";
+import StoreInventory from "../pages/store/StoreInventory";
 
 // Admin
 import AdminDashboard from "../pages/admin/AdminDashboard";
@@ -58,8 +59,9 @@ export default function AppRoutes() {
 
       {/* Store */}
       <Route path="/store/dashboard" element={<StoreDashboard />} />
-      <Route path="/store/AddItem" element={<AddStoreItem />} />
+      <Route path="/store/add-item" element={<AddStoreItem />} />
       <Route path="/store/orders" element={<StoreOrders />} />
+      <Route path="/store/inventory" element={<StoreInventory />} />
 
       {/* Complaints */}
       <Route path="/complaints" element={<Complaints />} />

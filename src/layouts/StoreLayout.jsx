@@ -1,12 +1,17 @@
 import { useState } from "react";
-import { Box, useTheme, useMediaQuery, Fab } from "@mui/material";
+import { Box, useTheme, useMediaQuery, Fab, IconButton } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import Brightness4Icon from "@mui/icons-material/Brightness4";
+import Brightness7Icon from "@mui/icons-material/Brightness7";
 import StoreSidebar from "../components/layout/StoreSidebar";
 import TopHeader from "../components/common/header";
 import Footer from "../components/common/footer";
+import { useContext } from "react";
+import { ThemeContext } from "../context/ThemeContext";
 
 export default function StoreLayout({ children }) {
   const theme = useTheme();
+  const { mode, toggleTheme } = useContext(ThemeContext);
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [sidebarOpen, setSidebarOpen] = useState(!isMobile);
 
@@ -16,7 +21,28 @@ export default function StoreLayout({ children }) {
   return (
     <Box sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
       {/* Top Header - Full Width */}
-      <TopHeader />
+      <Box sx={{ display: "flex", alignItems: "center" }}>
+        <Box sx={{ flexGrow: 1 }}>
+          <TopHeader />
+        </Box>
+        <IconButton
+          onClick={toggleTheme}
+          sx={{
+            position: "absolute",
+            top: 8,
+            right: 16,
+            zIndex: 1300,
+            color: "text.primary",
+            bgcolor: "background.paper",
+            boxShadow: 1,
+            "&:hover": {
+              bgcolor: "background.default",
+            },
+          }}
+        >
+          {mode === "dark" ? <Brightness7Icon /> : <Brightness4Icon />}
+        </IconButton>
+      </Box>
 
       <Box sx={{ display: "flex", flexGrow: 1, position: "relative" }}>
         {/* Floating Menu Button - Only show when sidebar is closed */}

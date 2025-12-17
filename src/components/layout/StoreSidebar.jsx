@@ -22,9 +22,9 @@ import StorefrontIcon from "@mui/icons-material/Storefront";
 
 const menuItems = [
   { text: "Dashboard", icon: <DashboardIcon />, path: "/store/dashboard" },
-  { text: "Add Item", icon: <AddCircleOutlineIcon />, path: "/store/AddItem" },
+  { text: "Add Item", icon: <AddCircleOutlineIcon />, path: "/store/add-item" },
   { text: "Orders", icon: <ShoppingCartIcon />, path: "/store/orders" },
-  { text: "Inventory", icon: <InventoryIcon />, path: "/items" },
+  { text: "Inventory", icon: <InventoryIcon />, path: "/store/inventory" },
 ];
 
 function StoreSidebar({ open, onClose, onToggle }) {

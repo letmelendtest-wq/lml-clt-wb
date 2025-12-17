@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import UserLayout from "../../layouts/UserLayout";
 import {
   Box,
@@ -132,6 +133,7 @@ const categories = [
 
 export default function Home() {
   const [activeStep, setActiveStep] = useState(0);
+  const navigate = useNavigate();
 
   return (
     <UserLayout>
@@ -215,7 +217,13 @@ export default function Home() {
       <Box sx={{ mt: 7 }}>
         <Box display="flex" justifyContent="space-between" mb={3}>
           <Typography fontWeight={600}>Grab the best deal on Lending</Typography>
-          <Typography color="primary">View All →</Typography>
+          <Typography 
+            color="primary" 
+            sx={{ cursor: "pointer" }}
+            onClick={() => navigate("/items")}
+          >
+            View All →
+          </Typography>
         </Box>
 
         <Grid container spacing={6}>

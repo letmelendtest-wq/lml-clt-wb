@@ -1,10 +1,15 @@
 import { useState } from "react";
 import { Box, IconButton, useTheme, useMediaQuery, Fab } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import Brightness4Icon from "@mui/icons-material/Brightness4";
+import Brightness7Icon from "@mui/icons-material/Brightness7";
 import AdminSidebar from "../components/layout/AdminSidebar";
+import { useContext } from "react";
+import { ThemeContext } from "../context/ThemeContext";
 
 export default function AdminLayout({ children }) {
   const theme = useTheme();
+  const { mode, toggleTheme } = useContext(ThemeContext);
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [sidebarOpen, setSidebarOpen] = useState(!isMobile);
 
@@ -14,6 +19,25 @@ export default function AdminLayout({ children }) {
 
   return (
     <Box sx={{ display: "flex", minHeight: "100vh", position: "relative" }}>
+      {/* Theme Toggle Button */}
+      <IconButton
+        onClick={toggleTheme}
+        sx={{
+          position: "fixed",
+          top: 16,
+          right: 16,
+          zIndex: 1400,
+          color: "text.primary",
+          bgcolor: "background.paper",
+          boxShadow: 2,
+          "&:hover": {
+            bgcolor: "background.default",
+          },
+        }}
+      >
+        {mode === "dark" ? <Brightness7Icon /> : <Brightness4Icon />}
+      </IconButton>
+
       {/* Floating Menu Button - Only show when sidebar is closed */}
       {!sidebarOpen && (
         <Fab
